@@ -5,6 +5,7 @@ fs.readFile('./floorplan.txt', (err, data) => {
   let floor = 0
   const instructions = data.toString().split('')
   const floorArray = []
+  const basement = []
   if (err) {
     console.log(err)
   } else {
@@ -15,12 +16,13 @@ fs.readFile('./floorplan.txt', (err, data) => {
         floorArray.push(floor--)
       }
     })
-    console.log('floor: ', floor)
+    console.log('The instructions take Santa to floor:', floor)
     floorArray.map((level, pos) => {
       if (level === -1) {
-        return console.log('He got to the basement after: ' + pos + ' steps')
+        return basement.push(pos)
       }
     })
+    console.log('He got to the basement after:', basement[0], 'steps')
   }
   console.timeEnd('time')
 })
